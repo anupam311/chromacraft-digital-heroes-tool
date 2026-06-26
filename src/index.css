@@ -238,4 +238,214 @@ select.btn-secondary:hover {
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
 }
 
+.workspace {
+  flex: 1;
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
 
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.column:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Top Area */
+
+.column-top {
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: 16px;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(10px);
+
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Color Info */
+
+.column-info {
+  padding: 15px;
+
+  color: white;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.column-info h2 {
+  font-size: 2rem;
+  font-weight: 700;
+
+  margin-bottom: 6px;
+
+  letter-spacing: 1px;
+}
+
+.column-info p {
+  font-size: 1rem;
+
+  opacity: 0.9;
+}
+
+/* Controls Panel */
+
+.controls-panel {
+  background: rgba(0,0,0,0.9);
+  width: fit-content;
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border: 1px solid rgba(0,0,0,0.5);
+
+  border-radius: 20px;
+
+  padding: 18px;
+
+  box-shadow:
+    0 8px 32px rgba(255,255,255,0.15);
+}
+
+/* Sliders */
+
+.slider-group {
+  margin-bottom: 16px;
+}
+
+.slider-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.5px;
+}
+
+.slider-group span{
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.slider-group input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 6px;
+
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.25);
+
+  outline: none;
+  cursor: pointer;
+}
+
+.slider-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 2px solid rgba(255,255,255,0.8);
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.25);
+
+  cursor: pointer;
+}
+
+.slider-group input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: none;
+
+  cursor: pointer;
+}
+
+.hue-slider {
+  background: linear-gradient(
+    to right,
+    red,
+    yellow,
+    lime,
+    cyan,
+    blue,
+    magenta,
+    red
+  ) !important;
+}
+
+.saturation-slider {
+  background: linear-gradient(
+    to right,
+    #808080,
+    #ffffff
+  ) !important;
+}
+
+.lightness-slider {
+  background: linear-gradient(
+    to right,
+    black,
+    white
+  ) !important;
+}
+
+.slider-label{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Animation */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
