@@ -292,6 +292,12 @@ select.btn-secondary:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 
+.icon-btn.locked {
+  background: rgba(255, 255, 255, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
 /* Color Info */
 
 .column-info {

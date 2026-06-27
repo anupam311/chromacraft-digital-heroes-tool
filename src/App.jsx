@@ -18,14 +18,27 @@ export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
   const handleGenerate = () => {
-  const newPalette = generatePalette(harmonyMode);
+    const newPalette = generatePalette(harmonyMode);
 
-  setColors((previous) =>
-    previous.map((color, index) =>
-      color.locked ? color : newPalette[index]
-    )
-  );
-};
+    setColors((previous) =>
+      previous.map((color, index) =>
+        color.locked ? color : newPalette[index]
+      )
+    );
+  };
+
+  const toggleLock = (index) => {
+    setColors((previous) =>
+      previous.map((color, i) =>
+        i === index
+          ? {
+              ...color,
+              locked: !color.locked,
+            }
+          : color
+      )
+    );
+  };
 
   const onExportToggle = () => {
     console.log('Export modal toggled!');

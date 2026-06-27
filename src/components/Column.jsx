@@ -22,7 +22,7 @@ function Column({
       {/* Top Controls */}
       <div className="column-top">
         <button
-          className="icon-btn"
+          className={`icon-btn ${color.locked ? "locked" : ""}`}
           onClick={(e) => {
             e.stopPropagation();
             onLock();
