@@ -4,31 +4,28 @@ import Footer from './components/Footer';
 import Column from './components/Column';
 import {
   createColorObject,
+  generatePalette,
   copyToClipboard,
   hslToHex,
 } from "./utils/color";
 
-const initialColors = Array.from(
-  { length: 5 },
-  () => createColorObject()
-);
-
-// ==========================================
-// MANDATORY DEVELOPER SETTINGS
-// Fill these in before deploying to Vercel!
-// ==========================================
-const DEVELOPER_NAME = "Anupam Chaudhary";  // Write your name inside the quotes
-const DEVELOPER_EMAIL = "anupamchaudhary.dev@gmail.com"; // Write your email inside the quotes
-// ==========================================
+const DEVELOPER_NAME = "Anupam Chaudhary"; 
+const DEVELOPER_EMAIL = "anupamchaudhary.dev@gmail.com";
 
 export default function App() {
   const [harmonyMode, setHarmonyMode] = useState('random');
-  const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useState(generatePalette('random'));
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const generatePalette = () => {
-    console.log('Generate palette clicked! Mode:', harmonyMode);
-  };
+  const handleGenerate = () => {
+  const newPalette = generatePalette(harmonyMode);
+
+  setColors((previous) =>
+    previous.map((color, index) =>
+      color.locked ? color : newPalette[index]
+    )
+  );
+};
 
   const onExportToggle = () => {
     console.log('Export modal toggled!');
@@ -39,7 +36,7 @@ export default function App() {
       <Header 
         harmonyMode={harmonyMode} 
         setHarmonyMode={setHarmonyMode} 
-        generatePalette={generatePalette} 
+        generatePalette={handleGenerate} 
         onExportToggle={onExportToggle} 
       />
       
