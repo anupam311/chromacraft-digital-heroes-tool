@@ -146,14 +146,14 @@ select.btn-secondary:hover {
   color: var(--text-primary);
 }
 
-.kbd-shortcut {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 0.1rem 0.4rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+.kbd-shortcut{
+  margin-left:8px;
+  padding:2px 8px;
+  border-radius:6px;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
+  font-size:.75rem;
+  font-weight:600;
 }
 
 /* Animations */

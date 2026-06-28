@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Column from './components/Column';
@@ -30,6 +30,29 @@ export default function App() {
       )
     );
   };
+
+  useEffect(() => {
+    handleGenerate();
+  }, [harmonyMode]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const tag = document.activeElement.tagName;
+      
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+      if (event.code === "Space") {
+        event.preventDefault();
+        handleGenerate();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [harmonyMode, colors]);
 
   const toggleLock = (index) => {
     setColors((previous) =>
