@@ -7,6 +7,7 @@ import {
   generatePalette,
   copyToClipboard,
   hslToHex,
+  getColorName,
 } from "./utils/color";
 
 const DEVELOPER_NAME = "Anupam Chaudhary"; 
@@ -40,6 +41,28 @@ export default function App() {
     );
   };
 
+  const updateColor = (index, property, value) => {
+    setColors((previous) =>
+      previous.map((color, i) => {
+        if (i !== index) return color;
+
+        const updated = {
+          ...color,
+          [property]: value,
+        };
+
+        updated.hex = hslToHex(
+          updated.h,
+          updated.s,
+          updated.l
+        );
+
+        updated.name = getColorName(updated.h);
+        return updated;
+      })
+    );
+  };
+
   const onExportToggle = () => {
     console.log('Export modal toggled!');
   };
@@ -64,13 +87,13 @@ export default function App() {
             onLock={() => toggleLock(index)}
             onCopy={() => copyColor(index)}
             onHueChange={(value) =>
-              updateHue(index, value)
+              updateColor(index, "h", value)
             }
             onSaturationChange={(value) =>
-              updateSaturation(index, value)
+              updateColor(index, "s", value)
             }
             onLightnessChange={(value) =>
-              updateLightness(index, value)
+              updateColor(index, "l", value)
             }
           />
         ))}
