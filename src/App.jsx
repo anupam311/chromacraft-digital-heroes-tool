@@ -17,6 +17,7 @@ export default function App() {
   const [harmonyMode, setHarmonyMode] = useState('random');
   const [colors, setColors] = useState(generatePalette('random'));
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [copiedColor, setCopiedColor] = useState("");
 
   const handleGenerate = () => {
     const newPalette = generatePalette(harmonyMode);
@@ -63,6 +64,18 @@ export default function App() {
     );
   };
 
+  const copyColor = (index) => {
+    const success = copyToClipboard(colors[index].hex);
+
+    if (!success) return;
+    
+    setCopiedColor(colors[index].hex);
+
+    setTimeout(() => {
+      setCopiedColor("");
+    }, 1800);
+  };
+
   const onExportToggle = () => {
     console.log('Export modal toggled!');
   };
@@ -103,6 +116,12 @@ export default function App() {
         developerName={DEVELOPER_NAME} 
         developerEmail={DEVELOPER_EMAIL} 
       />
+
+      {copiedColor && (
+        <div className="copy-toast">
+          Copied {copiedColor}
+        </div>
+      )}
     </>
   );
 }

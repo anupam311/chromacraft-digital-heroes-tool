@@ -1,5 +1,5 @@
 import React from "react";
-import {Lock, LockOpen} from "lucide-react";
+import {Lock, LockOpen, Copy} from "lucide-react";
 
 function Column({
   color,
@@ -33,6 +33,16 @@ function Column({
           ) : (
             <LockOpen size={18} strokeWidth={2} />
           )}
+        </button>
+        <button
+          className="icon-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            onCopy();
+          }}
+          title="Copy HEX"
+        >
+          <Copy size={18} strokeWidth={2} />
         </button>
       </div>
 
