@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Column from './components/Column';
+import ExportModal from './components/ExportModal';
 import {
   createColorObject,
   generatePalette,
@@ -18,6 +19,7 @@ export default function App() {
   const [colors, setColors] = useState(generatePalette('random'));
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [copiedColor, setCopiedColor] = useState("");
+  const [showExport, setShowExport] = useState(false);
 
   const handleGenerate = () => {
     const newPalette = generatePalette(harmonyMode);
@@ -77,7 +79,7 @@ export default function App() {
   };
 
   const onExportToggle = () => {
-    console.log('Export modal toggled!');
+    setShowExport((prev) => !prev);
   };
 
   return (
@@ -116,6 +118,13 @@ export default function App() {
         developerName={DEVELOPER_NAME} 
         developerEmail={DEVELOPER_EMAIL} 
       />
+
+      {showExport && (
+        <ExportModal 
+          colors={colors} 
+          onClose={() => setShowExport(false)} 
+        />
+      )}
 
       {copiedColor && (
         <div className="copy-toast">
