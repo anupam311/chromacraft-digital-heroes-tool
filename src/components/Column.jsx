@@ -8,6 +8,7 @@ function Column({
   onMouseLeft,
   onLock,
   onCopy,
+  onHexChange,
   onHueChange,
   onSaturationChange,
   onLightnessChange,
@@ -20,13 +21,14 @@ function Column({
       onMouseLeave={onMouseLeft}
     >
       {/* Top Controls */}
-      <div className="column-top">
+      <div className="column-top" >
         <button
           className={`icon-btn ${color.locked ? "locked" : ""}`}
           onClick={(e) => {
             e.stopPropagation();
             onLock();
           }}
+          style={{ backgroundColor: color.l > 50? "rgba(0, 0, 0, 0.3)" : "rgba(255, 255, 255, 0.3)" }}
         >
           {color.locked ? (
             <Lock size={18} strokeWidth={2} />
@@ -41,6 +43,7 @@ function Column({
             onCopy();
           }}
           title="Copy HEX"
+          style={{ backgroundColor: color.l > 50? "rgba(0, 0, 0, 0.3)" : "rgba(255, 255, 255, 0.3)" }}
         >
           <Copy size={18} strokeWidth={2} />
         </button>
@@ -48,8 +51,15 @@ function Column({
 
       {/* Color Info */}
       <div className="column-info">
-        <h2>{color.hex}</h2>
-        <p>{color.name}</p>
+        <input 
+          type="text" 
+          value={color.hex.toUpperCase()} 
+          onChange={(e) => onHexChange(e.target.value)} 
+          maxlength="7" 
+          style={{ color: color.l > 70 ? "#111827" : "#ffffff" }} 
+        />
+
+        <p style={{ color: color.l > 70 ? "#111827" : "#ffffff" }}>{color.name}</p>
       </div>
 
       {/* HSL Controls */}

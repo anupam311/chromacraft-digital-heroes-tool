@@ -8,11 +8,12 @@ import {
   generatePalette,
   copyToClipboard,
   hslToHex,
+  hexToHsl,
   getColorName,
 } from "./utils/color";
 
-const DEVELOPER_NAME = "Anupam Chaudhary"; 
-const DEVELOPER_EMAIL = "anupamchaudhary.dev@gmail.com";
+const DEVELOPER_NAME = ""; 
+const DEVELOPER_EMAIL = "";
 
 export default function App() {
   const [harmonyMode, setHarmonyMode] = useState('random');
@@ -20,6 +21,8 @@ export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [copiedColor, setCopiedColor] = useState("");
   const [showExport, setShowExport] = useState(false);
+
+  console.log(colors);
 
   const handleGenerate = () => {
     const newPalette = generatePalette(harmonyMode);
@@ -77,11 +80,18 @@ export default function App() {
           [property]: value,
         };
 
-        updated.hex = hslToHex(
-          updated.h,
-          updated.s,
-          updated.l
-        );
+        if (property === "hex") {
+          const newHSL = hexToHsl(value);
+          updated.h = newHSL.h;
+          updated.s = newHSL.s;
+          updated.l = newHSL.l
+        } else {
+          updated.hex = hslToHex(
+            updated.h,
+            updated.s,
+            updated.l
+          )
+        };
 
         updated.name = getColorName(updated.h);
         return updated;
@@ -124,6 +134,9 @@ export default function App() {
             onMouseLeft={() => setSelectedIndex(null)}
             onLock={() => toggleLock(index)}
             onCopy={() => copyColor(index)}
+            onHexChange={(value) =>
+              updateColor(index, "hex", value)
+            }
             onHueChange={(value) =>
               updateColor(index, "h", value)
             }
