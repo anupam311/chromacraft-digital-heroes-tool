@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Lock, LockOpen, Copy} from "lucide-react";
 
 function Column({
@@ -13,6 +13,17 @@ function Column({
   onSaturationChange,
   onLightnessChange,
 }) {
+  const [hexInput, setHexInput] = useState(color.hex);
+
+  useEffect(() => {
+    setHexInput(color.hex);
+  }, [color.hex]);
+
+  const isValidHex = (hex) => {
+    const hexRegex = /^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})$/;
+    return hexRegex.test(hex);
+  };
+
   return (
     <div
       className={`column ${selected ? "selected" : ""}`}
@@ -52,9 +63,34 @@ function Column({
       {/* Color Info */}
       <div className="column-info">
         <input 
+          className={`hex-input ${
+            !isValidHex(hexInput) ? "invalid" : ""
+          }`}
           type="text" 
-          value={color.hex.toUpperCase()} 
-          onChange={(e) => onHexChange(e.target.value)} 
+          value={hexInput.toUpperCase()} 
+          onChange={(e) => {
+            const value = e.target.value.toUpperCase().replace(/[^0-9A-F#]/g, "");
+
+            if (!value.startsWith("#")) {
+              value = "#" + value;
+            }
+
+            setHexInput(value);
+            
+            if (isValidHex(value)) {
+              onHexChange(value);
+            }
+          }}
+
+           onKeyDown={(e) => {
+            if (
+                e.key === "Enter" &&
+                isValidHex(hexInput)
+            ) {
+                onHexChange(hexInput);
+            }
+          }}
+
           maxlength="7" 
           style={{ color: color.l > 70 ? "#111827" : "#ffffff" }} 
         />

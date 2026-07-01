@@ -12,8 +12,8 @@ import {
   getColorName,
 } from "./utils/color";
 
-const DEVELOPER_NAME = ""; 
-const DEVELOPER_EMAIL = "";
+const DEVELOPER_NAME = "Anupam Chaudhary"; 
+const DEVELOPER_EMAIL = "anupamchaudhary.dev@gmail.com";
 
 export default function App() {
   const [harmonyMode, setHarmonyMode] = useState('random');
