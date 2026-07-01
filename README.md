@@ -5,7 +5,7 @@ A modern React-based color palette generator that helps designers and developers
 ---
 
 ## 🖥️ Live Demo
-[Live Demo](https://chromacraft.vercel.app/)
+[Live Demo](https://chromacraft-digital-heroes-tool.vercel.app/)
 ---
 
 ## ✨ Features
